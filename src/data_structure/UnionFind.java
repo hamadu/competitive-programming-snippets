@@ -6,7 +6,6 @@ package data_structure;
  * find: amortized O(a(n))
  * unite: amortized O(a(n))
  * (a(n) : inverse of Ack(n,n))
- *
  */
 public class UnionFind {
     int[] rank;
