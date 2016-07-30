@@ -2,15 +2,24 @@
 
 ### Contents
 
-* combinatorics
+* Math
   * Combination
   * Permutation
-* data_structure
-* geometry
-* graph
-* string
-* utils
-  * io
+* Data Structures
+  * Persistent version
+    * Persistent Array()
+    * Persistent Stack
+  * Segment trees
+    * SegmtntTree(Point Update, Range Minimum Query)
+    * SegmtntTree(Range Add, Range Minimum Query)
+    * SegmtntTree(Range Update, Range Sum Query)
+  * Fenwick trees
+    *
+* Geometry
+* Graphs
+* Strings
+* Utils
+  * I/O
     * GraphBuilder
     * InputReader
 
