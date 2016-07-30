@@ -6,6 +6,14 @@ import java.util.List;
  * TODO: WIP
  */
 public class GraphBuilder {
+    /**
+     * Builds undirected graph from input stream.
+     *
+     * @param in input stream
+     * @param n number of vertices
+     * @param m number of edges
+     * @return
+     */
     static int[][] buildGraph(InputReader in, int n, int m) {
         int[][] edges = new int[m][];
         int[][] graph = new int[n][];
@@ -29,6 +37,13 @@ public class GraphBuilder {
         return graph;
     }
 
+    /**
+     * Builds undirected graph from given edges.
+     *
+     * @param n number of vertices
+     * @param edges array of edge({from,to})
+     * @return
+     */
     static int[][] buildGraph(int n, int[][] edges) {
         int m = edges.length;
         int[][] graph = new int[n][];
@@ -51,7 +66,13 @@ public class GraphBuilder {
         return graph;
     }
 
-
+    /**
+     * Builds undirected graph from given edges.
+     *
+     * @param n number of vertices
+     * @param edges list of edge({from,to})
+     * @return
+     */
     static int[][] buildGraph(int n, List<int[]> edges) {
         int m = edges.size();
         int[][] graph = new int[n][];
@@ -74,6 +95,13 @@ public class GraphBuilder {
         return graph;
     }
 
+    /**
+     * Builds undirected graph from given edges.
+     *
+     * @param l edge(from)
+     * @param r edge(to)
+     * @return
+     */
     static int[][] buildGraph(int[] l, int[] r) {
         int n = 0;
         for (int i = 0 ; i < l.length ; i++) {
@@ -101,6 +129,12 @@ public class GraphBuilder {
         return graph;
     }
 
+    /**
+     * Builds rooted tree(or forest) from vertices' parent array.
+     *
+     * @param par parent of i-th vertex. if -1 given, it means he is the root of a tree(or forest).
+     * @return
+     */
     static int[][] buildRootedTreeFromPar(int[] par) {
         int n = par.length;
         int[][] edges = new int[n-1][2];
@@ -130,6 +164,14 @@ public class GraphBuilder {
         return graph;
     }
 
+    /**
+     * Builds undirected weighted graph from input stream.
+     *
+     * @param in input stream
+     * @param n number of vertices
+     * @param m number of edges
+     * @return
+     */
     static int[][][] buildWeightedGraph(InputReader in, int n, int m) {
         int[][] edges = new int[m][];
         int[][][] graph = new int[n][][];
