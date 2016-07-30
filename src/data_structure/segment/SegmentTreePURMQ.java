@@ -3,14 +3,14 @@ package data_structure.segment;
 import java.util.Arrays;
 
 /**
- * Segment tree (update point, range min)
+ * Segment tree (point update, range minimum query)
  */
-public class SegmentTreeOneUpdateRangeMin {
+public class SegmentTreePURMQ {
     int N;
     int M;
     int[] seg;
 
-    public SegmentTreeOneUpdateRangeMin(int[] data) {
+    public SegmentTreePURMQ(int[] data) {
         N = Integer.highestOneBit(data.length-1)<<2;
         M = (N >> 1) - 1;
 
@@ -124,7 +124,7 @@ public class SegmentTreeOneUpdateRangeMin {
                 }
                 cur--;
                 if ((cur&1)==0) {
-                    cur >>>= 1;
+                    cur = (cur-1)>>>1;
                 }
             }
         }
