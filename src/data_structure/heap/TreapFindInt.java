@@ -5,7 +5,7 @@ import utils.rand.XorShift;
 /**
  * Treap(tree+heap)
  */
-public class TreapInt {
+public class TreapFindInt {
     private static final int INF = 100000001;
 
     static XorShift rand = new XorShift();
@@ -39,27 +39,27 @@ public class TreapInt {
         return (a == null) ? 0 : a.count;
     }
 
+
     /**
-     * Grabs k-th node from given node.
+     * Finds node position that value = v.
+     * If there is no such node, returns minus value.
      *
-     * @param a
-     * @param k
-     * @return
+     * @param v
+     * @return found node.
      */
-    public static Node grab(Node a, int k) {
-        if (a == null) {
-            return null;
+    public static int detect(Node x, int v) {
+        if (x == null) {
+            return -INF;
         }
-        update(a);
-        int l = count(a.l);
-        if (k == l) {
-            return a;
-        } else if (k < l) {
-            return grab(a.l, k);
+        if (x.value == v) {
+            return count(x.l);
+        } else if (v < x.value) {
+            return detect(x.l, v);
         } else {
-            return grab(a.r, k-l-1);
+            return count(x.l) + 1 + detect(x.r, v);
         }
     }
+
 
     /**
      * Merges two trees.
@@ -138,7 +138,7 @@ public class TreapInt {
     }
 
     /**
-     * Adds new node value=v to the end of tree.
+     * Adds new node to tree.
      *
      * @param v
      */
@@ -147,34 +147,25 @@ public class TreapInt {
     }
 
     /**
-     * Adds new node value=v to tree at k-th position.
+     * Finds node position that value = v.
+     * If there is no such node, returns minus value.
+     *
+     * @param v
+     * @return
+     */
+    public int detect(int v) {
+        return detect(root, v);
+    }
+
+    /**
+     * Removes a node value = v from tree.
      *
      * @param v
      */
-    public void push(int v, int k) {
-        root = insert(root, k, new Node(v));
-    }
-
-    /**
-     * Removes k-th node from tree.
-     *
-     * @param k
-     */
-    public void remove(int k) {
-        root = erase(root, k);
-    }
-
-    /**
-     * Get k-th node value
-     *
-     * @param k
-     * @return
-     */
-    public int get(int k) {
-        Node n = grab(root, k);
-        if (n == null) {
-            return -INF;
+    public void remove(int v) {
+        int pos = detect(v);
+        if (pos >= 0) {
+            root = erase(root, pos);
         }
-        return n.value;
     }
 }

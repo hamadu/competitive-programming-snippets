@@ -2,8 +2,6 @@ package data_structure.heap;
 
 import org.junit.Test;
 
-import java.util.TreeSet;
-
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
@@ -19,42 +17,44 @@ public class TreapIntTest {
 
     @Test
     public void createEmpty() {
-        TreapInt treap = new TreapInt();
+        TreapInt treap = createTreap(new int[]{});
         assertThat(treap.root, nullValue());
         assertThat(treap.size(), is(0));
     }
 
     @Test
     public void pushValues() {
-        TreapInt treap = createTreap(new int[]{0,1,2,3,4});
+        TreapInt treap = createTreap(new int[]{1,3,4,0,2});
 
         assertThat(treap.root, notNullValue());
         assertThat(treap.size(), is(5));
     }
 
     @Test
-    public void findNode() {
-        TreapInt treap = createTreap(new int[]{0,10,20,30,40,50,60,70,80,90});
-
-        assertThat(treap.detect(0), is(0));
-        assertThat(treap.detect(20), is(2));
-        assertThat(treap.detect(70), is(7));
-        assertThat(treap.detect(90), is(9));
-        assertThat(treap.detect(25) < 0, is(true));
-        assertThat(treap.detect(-10) < 0, is(true));
-        assertThat(treap.detect(1000) < 0, is(true));
+    public void getNode() {
+        int[] x = new int[]{0,10,20,30,40,50,60,70,80,90};
+        TreapInt treap = createTreap(x);
+        for (int i = 0; i < x.length; i++) {
+            assertThat(treap.get(i), is(x[i]));
+        }
+        assertThat(treap.get(-1) < 0, is(true));
+        assertThat(treap.get(10) < 0, is(true));
     }
 
     @Test
     public void eraseValues() {
         TreapInt treap = createTreap(new int[]{0,1,2,3,4,5,6,7,8,9});
-        assertThat(treap.size(), is(10));
+        treap.remove(3);
+        treap.push(10, 0);
+        treap.push(20);
+        treap.remove(9);
 
-        treap.remove(4);
-        assertThat(treap.size(), is(9));
-        assertThat(treap.detect(4) < 0, is(true));
+        int[] x = new int[]{10,0,1,2,4,5,6,7,8,20};
+        for (int i = 0; i < x.length; i++) {
+            assertThat(treap.get(i), is(x[i]));
+        }
     }
-    
+
     @Test
     public void putFindRemoveManyValues() {
         final int SIZE = (int)1e6;
@@ -63,7 +63,7 @@ public class TreapIntTest {
             treap.push(i);
         }
         assertThat(treap.size(), is(SIZE));
-        for (int i = 0; i < SIZE ; i++) {
+        for (int i = SIZE-1 ; i >= 0 ; i--) {
             treap.remove(i);
         }
         assertThat(treap.size(), is(0));

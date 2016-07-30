@@ -3,9 +3,9 @@ package data_structure.heap;
 import utils.rand.XorShift;
 
 /**
- * Treap(tree+heap)
+ * Treap(tree+heap). Reversable.
  */
-public class TreapInt {
+public class TreapIntRev {
     private static final int INF = 100000001;
 
     static XorShift rand = new XorShift();
@@ -15,28 +15,56 @@ public class TreapInt {
         int value;
         int count;
         int heapValue;
+        boolean reversed;
 
         public Node(int v) {
             value = v;
             heapValue = rand.next();
             count = 1;
         }
+
+        public void print(String prefix) {
+            if (l != null) {
+                l.print(prefix + " ");
+            }
+            System.out.println(prefix + "v="+value+"/r="+reversed);
+            if (r != null) {
+                r.print(prefix + " ");
+            }
+        }
+
     }
 
     Node root;
-
-
 
     public static Node update(Node a) {
         if (a == null) {
             return null;
         }
+        pushDown(a);
         a.count = 1 + count(a.l) + count(a.r);
         return a;
     }
 
+    public static void pushDown(Node a) {
+        if (a.reversed) {
+            Node tmp = a.l;
+            a.l = a.r;
+            a.r = tmp;
+            reverse(a.l);
+            reverse(a.r);
+            a.reversed = false;
+        }
+    }
+
     public static int count(Node a) {
         return (a == null) ? 0 : a.count;
+    }
+
+    public static void reverse(Node a) {
+        if (a != null) {
+            a.reversed ^= true;
+        }
     }
 
     /**
@@ -72,6 +100,8 @@ public class TreapInt {
         if (a == null || b == null) {
             return a == null ? b : a;
         }
+        update(a);
+        update(b);
         if (a.heapValue < b.heapValue) {
             a.r = merge(a.r, b);
             return update(a);
@@ -92,6 +122,7 @@ public class TreapInt {
         if (a == null) {
             return new Node[]{null, null};
         }
+        update(a);
         if (k <= count(a.l)) {
             Node[] s = split(a.l, k);
             a.l = s[1];
@@ -126,6 +157,20 @@ public class TreapInt {
         Node[] al = split(a, k);
         Node[] ar = split(al[1], 1);
         return merge(al[0], ar[1]);
+    }
+
+
+    /**
+     * Reverses value at point [l, r)
+     *
+     * @param l
+     * @param r
+     */
+    public void reverse(int l, int r) {
+        Node[] right = split(root, r);
+        Node[] left = split(right[0], l);
+        reverse(left[1]);
+        root = merge(left[0], merge(left[1], right[1]));
     }
 
     /**
