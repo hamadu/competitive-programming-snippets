@@ -1,6 +1,5 @@
-package data_structure.graph.flow;
+package graph.flow;
 
-import graph.flow.MaxFlowFord;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

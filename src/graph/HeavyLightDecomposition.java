@@ -2,231 +2,108 @@ package graph;
 
 import java.util.Arrays;
 
-/**
- * Created by hama_du on 2016/07/31.
- */
 public class HeavyLightDecomposition {
-    int head;
     int n;
-    int parentGid;
-    int[] idx;
-    int depth;
+    int[][] graph;
+    int root;
 
-    // SegmentTree seg;
+    int[] parent;
+    int[] children;
+    int[] level;
 
-    public HeavyLightDecomposition(int h, int pgid, int[] ids, int de) {
-        n = ids.length;
-        head = h;
-        idx = ids;
-        parentGid = pgid;
-        depth = de;
+    int[] groupSize;
+    int[] groupID;
+    int[] groupLevel;
 
-        int[] v = new int[n];
-        for (int i = 0; i < n ; i++) {
-            // v[i] = W[ids[i]];
-        }
-        // seg = new SegmentTree(v);
+    public HeavyLightDecomposition(int[][] g, int rt) {
+        n = g.length;
+        graph = g;
+        root = rt;
+        parent = new int[n];
+        children = new int[n];
+        level = new int[n];
+        prec();
+        doit();
     }
 
-    static class HeavyLightDecomposer {
-        int n;
-        int[][] graph;
-        int[] parent;
-        int[] children;
+    public void prec() {
+        int qh = 0, qt = 0;
+        int[] que = new int[2*n];
+        que[qh++] = root;
+        que[qh++] = -1;
 
-        int[] gid;
-        int[] orderInGroup;
-        int[] parentGid;
-
-        HeavyLightDecomposition[] components;
-
-        static int[] _temp_ids = new int[300000];
-        static int[] _stk = new int[1000000];
-
-        public HeavyLightDecomposer(int[][] g, int root) {
-            graph = g;
-            n = graph.length;
-            parent = new int[n];
-            children = new int[n];
-            gid = new int[n];
-            orderInGroup = new int[n];
-            parentGid = new int[n];
-
-            dfs0(root);
-        }
-
-        public void dfs0(int root) {
-            int head = 0;
-            _stk[head++] = root;
-            _stk[head++] = -1;
-            int tid = 0;
-            while (head > 0) {
-                int par = _stk[--head];
-                int now = _stk[--head];
-                _temp_ids[tid++] = now;
-                parent[now] = par;
-                for (int to : graph[now]) {
-                    if (to != par) {
-                        _stk[head++] = to;
-                        _stk[head++] = now;
-                    }
-                }
+        int[] ord = new int[n];
+        int oi = 0;
+        while (qt < qh) {
+            int now = que[qt++];
+            int par = que[qt++];
+            parent[now] = par;
+            children[now]++;
+            if (par != -1) {
+                level[now] = level[par] + 1;
             }
-            for (int t = tid -1 ; t >= 0 ; t--) {
-                int now = _temp_ids[t];
-                children[now] += 1;
-                if (parent[now] != -1) {
-                    children[parent[now]] += children[now];
+            ord[oi++] = now;
+            for (int to : graph[now]) {
+                if (to != par) {
+                    que[qh++] = to;
+                    que[qh++] = now;
                 }
             }
         }
-
-        public void doit() {
-            ngi = 0;
-            decompose(0);
-            buildHLComponent();
+        for (int i = n-1 ; i >= 0 ; i--) {
+            int v = ord[i];
+            if (parent[v] != -1) {
+                children[parent[v]] += children[v];
+            }
         }
+    }
 
-        static int ngi = 0;
+    public void doit() {
+        int[] next = new int[n];
+        int[] groupHeads = new int[n];
+        groupHeads[0] = root;
 
-        public void decompose(int root) {
-            int sh = 0;
-            _stk[sh++] = root;
-            _stk[sh++] = -1;
-            _stk[sh++] = -1;
-            _stk[sh++] = 0;
-            while (sh > 0) {
-                int depth = _stk[--sh];
-                int pgi = _stk[--sh];
-                int gi = _stk[--sh];
-                int head = _stk[--sh];
-                if (gi == -1) {
-                    gi = ngi++;
-                }
-
-                gid[head] = gi;
-                orderInGroup[head] = depth;
-                parentGid[head] = pgi;
-
-                int maxTo = -1;
-                int max = -1;
-                for (int to : graph[head]) {
-                    if (parent[head] == to) {
-                        continue;
-                    }
+        int gi = 1;
+        for (int i = 0 ; i < n ; i++) {
+            int max = -1;
+            int maxJ = -1;
+            for (int j = 0 ; j < graph[i].length ; j++) {
+                int to = graph[i][j];
+                if (parent[i] != to) {
                     if (max < children[to]) {
                         max = children[to];
-                        maxTo = to;
+                        maxJ = j;
                     }
                 }
-                if (maxTo == -1) {
-                    continue;
-                }
-
-                // heavy
-                _stk[sh++] = maxTo;
-                _stk[sh++] = gi;
-                _stk[sh++] = gi;
-                _stk[sh++] = depth+1;
-
-                // light
-                for (int to : graph[head]) {
-                    if (parent[head] == to) {
-                        continue;
-                    }
-                    if (to != maxTo) {
-                        _stk[sh++] = to;
-                        _stk[sh++] = -1;
-                        _stk[sh++] = gi;
-                        _stk[sh++] = 0;
+            }
+            if (maxJ != -1) {
+                next[i] = graph[i][maxJ];
+                for (int j = 0; j < graph[i].length; j++) {
+                    int to = graph[i][j];
+                    if (parent[i] != to && j != maxJ) {
+                        groupHeads[gi++] = to;
                     }
                 }
+            } else {
+                next[i] = -1;
             }
         }
 
-        public void decompose(int head, int gi, int pgi, int depth) {
-            if (gi == -1) {
-                gi = ngi++;
-            }
-            gid[head] = gi;
-            orderInGroup[head] = depth;
-            parentGid[head] = pgi;
-
-            int maxTo = -1;
-            int max = -1;
-            for (int to : graph[head]) {
-                if (parent[head] == to) {
-                    continue;
-                }
-                if (max < children[to]) {
-                    max = children[to];
-                    maxTo = to;
-                }
-            }
-            if (maxTo == -1) {
-                return;
-            }
-
-            // heavy
-            decompose(maxTo, gi, gi, depth+1);
-
-            // light
-            for (int to : graph[head]) {
-                if (parent[head] == to) {
-                    continue;
-                }
-                if (to != maxTo) {
-                    decompose(to, -1, gi, 0);
-                }
+        groupID = new int[n];
+        groupLevel = new int[n];
+        groupSize = new int[gi];
+        for (int i = 0 ; i < gi ; i++) {
+            int head = groupHeads[i];
+            groupID[head] = i;
+            while (next[head] != -1) {
+                int ne = next[head];
+                groupID[ne] = i;
+                groupLevel[ne] = groupLevel[head] + 1;
+                head = ne;
             }
         }
-
-        public void buildHLComponent() {
-            int maxG = 0;
-            for (int gi : gid) {
-                maxG = Math.max(maxG, gi+1);
-            }
-
-            components = new HeavyLightDecomposition[maxG];
-            int[] que = new int[n*2];
-            int qh = 0;
-            int qt = 0;
-            que[qh++] = 0;
-            que[qh++] = -1;
-            while (qt < qh) {
-                int head = que[qt++];
-                int parentGid = que[qt++];
-                int now = head;
-
-                int tid = 0;
-                while (true) {
-                    _temp_ids[tid++] = now;
-                    int next = -1;
-                    for (int to : graph[now]) {
-                        if (to == parent[now]) {
-                            continue;
-                        }
-                        if (gid[head] != gid[to]) {
-                            que[qh++] = to;
-                            que[qh++] = gid[head];
-                        } else {
-                            next = to;
-                        }
-                    }
-                    if (next == -1) {
-                        break;
-                    }
-                    now = next;
-                }
-
-                int[] aids = Arrays.copyOf(_temp_ids, tid);
-                int depth = 0;
-                if (parentGid != -1) {
-                    depth = components[parentGid].depth + 1;
-                }
-                components[gid[head]] = new HeavyLightDecomposition(head, parentGid, aids, depth);
-            }
+        for (int i = 0; i < n ; i++) {
+            groupSize[groupID[i]]++;
         }
     }
 }
-
