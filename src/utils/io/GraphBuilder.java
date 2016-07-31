@@ -14,7 +14,7 @@ public class GraphBuilder {
      * @param m number of edges
      * @return
      */
-    static int[][] buildGraph(InputReader in, int n, int m) {
+    public static int[][] buildGraph(InputReader in, int n, int m) {
         int[][] edges = new int[m][];
         int[][] graph = new int[n][];
         int[] deg = new int[n];
@@ -44,7 +44,7 @@ public class GraphBuilder {
      * @param edges array of edge({from,to})
      * @return
      */
-    static int[][] buildGraph(int n, int[][] edges) {
+    public static int[][] buildGraph(int n, int[][] edges) {
         int m = edges.length;
         int[][] graph = new int[n][];
         int[] deg = new int[n];
@@ -73,7 +73,7 @@ public class GraphBuilder {
      * @param edges list of edge({from,to})
      * @return
      */
-    static int[][] buildGraph(int n, List<int[]> edges) {
+    public static int[][] buildGraph(int n, List<int[]> edges) {
         int m = edges.size();
         int[][] graph = new int[n][];
         int[] deg = new int[n];
@@ -102,7 +102,7 @@ public class GraphBuilder {
      * @param r edge(to)
      * @return
      */
-    static int[][] buildGraph(int[] l, int[] r) {
+    public static int[][] buildGraph(int[] l, int[] r) {
         int n = 0;
         for (int i = 0 ; i < l.length ; i++) {
             n = Math.max(n, l[i]);
@@ -135,7 +135,7 @@ public class GraphBuilder {
      * @param par parent of i-th vertex. if -1 given, it means he is the root of a tree(or forest).
      * @return
      */
-    static int[][] buildRootedTreeFromPar(int[] par) {
+    public static int[][] buildRootedTreeFromPar(int[] par) {
         int n = par.length;
         int[][] edges = new int[n-1][2];
         int ei = 0;
@@ -172,7 +172,7 @@ public class GraphBuilder {
      * @param m number of edges
      * @return
      */
-    static int[][][] buildWeightedGraph(InputReader in, int n, int m) {
+    public static int[][][] buildWeightedGraph(InputReader in, int n, int m) {
         int[][] edges = new int[m][];
         int[][][] graph = new int[n][][];
         int[] deg = new int[n];

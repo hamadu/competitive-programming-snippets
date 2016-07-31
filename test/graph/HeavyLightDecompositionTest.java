@@ -1,6 +1,8 @@
 package graph;
 
 import org.junit.Test;
+import utils.io.GraphBuilder;
+import utils.rand.XorShift;
 
 import java.util.Arrays;
 
@@ -64,8 +66,17 @@ public class HeavyLightDecompositionTest {
         }
     }
 
-    public static void debug(Object... o) {
-        System.err.println(Arrays.deepToString(o));
+    @Test
+    public void largeGraph() {
+        XorShift rand = new XorShift();
+        int n = 200000;
+        int[] par = new int[n];
+        par[0] = -1;
+        for (int i = 1 ; i < n ; i++) {
+            par[i] = rand.nextInt(i);
+        }
+        int[][] tree = GraphBuilder.buildRootedTreeFromPar(par);
+        HeavyLightDecomposition decomp = new HeavyLightDecomposition(tree, 0);
+        assertThat(decomp.groupLevel.length, is(n));
     }
-
 }
