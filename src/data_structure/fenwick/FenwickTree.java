@@ -14,7 +14,7 @@ public class FenwickTree {
         data = new long[n+1];
     }
 
-    long sum(int i) {
+    public long sum(int i) {
         long s = 0;
         while (i > 0) {
             s += data[i];
@@ -23,11 +23,15 @@ public class FenwickTree {
         return s;
     }
 
-    long range(int i, int j) {
+    public long range(int i, int j) {
         return sum(j) - sum(i-1);
     }
 
-    void add(int i, long x) {
+    public void set(int i, long x) {
+        add(i, x-range(i, i));
+    }
+
+    public void add(int i, long x) {
         while (i <= N) {
             data[i] += x;
             i += i & (-i);

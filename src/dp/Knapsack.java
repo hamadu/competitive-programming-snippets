@@ -6,7 +6,7 @@ package dp;
 public class Knapsack {
 
     /**
-     * Item-count-limited knapsack.
+     * Item-answerCountQuery-limited knapsack.
      * O(nW)
      *
      * @param dp   dp value
