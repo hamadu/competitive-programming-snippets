@@ -13,7 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * Created by hama_du on 2016/08/06.
  */
-public class DistinctNumberRangeTest {
+public class DistinctNumberRange1Test {
 
     public static int[] solveNaive(int[] a, int[][] queries) {
         int[] ret = new int[queries.length];
@@ -42,7 +42,7 @@ public class DistinctNumberRangeTest {
         for (int i = 0; i < q.size() ; i++) {
             queries[i] = q.get(i);
         }
-        int[] ret = DistinctNumberRange.answerDistinctQuery(a, queries);
+        int[] ret = DistinctNumberRange1.answerDistinctQuery(a, queries);
         assertThat(ret, is(solveNaive(a, queries)));
     }
 }

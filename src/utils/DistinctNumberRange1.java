@@ -7,7 +7,7 @@ import java.util.Arrays;
 /**
  * Created by hama_du on 2016/08/06.
  */
-public class DistinctNumberRange {
+public class DistinctNumberRange1 {
     /**
      * Computes distinct numbers of give array.
      * Answers multiple query.

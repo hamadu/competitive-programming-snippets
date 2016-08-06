@@ -22,7 +22,12 @@
   * I/O
     * GraphBuilder
     * InputReader
-
+  * Random
+    * XorShift
+  * misc
+    * Range Queries
+      * Counts ranges that covered by specific ranges
+      * Counts distinct numbers of given ranges(type1,type2)
 
 ### How to use
 

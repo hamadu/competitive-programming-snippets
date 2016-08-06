@@ -3,9 +3,7 @@ package utils;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -29,6 +27,6 @@ public class DistinctNumberRange2Test {
             queries[i] = q.get(i);
         }
         int[] ret = DistinctNumberRange2.answerDistinctQuery(a, queries);
-        assertThat(ret, is(DistinctNumberRangeTest.solveNaive(a, queries)));
+        assertThat(ret, is(DistinctNumberRange1Test.solveNaive(a, queries)));
     }
 }
