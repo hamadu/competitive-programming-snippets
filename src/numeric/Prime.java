@@ -9,6 +9,8 @@ public class Prime {
     /**
      * Generates primes less than upto.
      *
+     * O(nlog(logn))
+     *
      * @param upto limit
      * @return array of primes
      */
