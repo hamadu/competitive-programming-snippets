@@ -76,6 +76,8 @@ public class SegmentTreePURMQ {
      * Finds minimum position k s.t. k >= l and min(k,k+1) <= v
      * If there is no such k, returns -1.
      *
+     * O(logn)
+     *
      * @param l
      * @param v
      * @return
@@ -104,6 +106,8 @@ public class SegmentTreePURMQ {
     /**
      * Finds maximum position k s.t. k <= l and min(k,k+1) <= v
      * If there is no such k, returns -1.
+     *
+     * O(logn)
      *
      * @param l
      * @param v
