@@ -3,9 +3,6 @@ package utils;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-/**
- * Created by hama_du on 2016/07/31.
- */
 public class SlideMinValue {
     /**
      * Computes slide-window min value.

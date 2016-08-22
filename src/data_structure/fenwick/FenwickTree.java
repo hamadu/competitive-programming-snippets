@@ -60,7 +60,7 @@ public class FenwickTree {
      * Adds value x into i-th position.
      *
      * O(logn)
-     * 
+     *
      * @param i
      * @param x
      */
