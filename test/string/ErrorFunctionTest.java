@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
  */
 public class ErrorFunctionTest {
     @Test
-    public void starGraph() {
+    public void abcAbcAbAbcAbc() {
         int[] ret = ErrorFunction.errorFunction("abcababcabcababc".toCharArray());
 
         // *abcababcabcababc

@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
  */
 public class ZFunctionTest {
     @Test
-    public void starGraph() {
+    public void abcAbcAbAbcAbc() {
         int[] ret = ZFunction.buildZ("abcababcabcababc".toCharArray());
         assertThat(ret, is(new int[]{16, 0, 0, 2, 0, 5, 0, 0, 8, 0, 0, 2, 0, 3, 0, 0}));
     }
