@@ -13,10 +13,10 @@ class MeldableSegment {
      * add and merge segment s.
      * segments are inclusive-inclusive: [fr,to]
      */
-    void meld(Segment s) {
+    public void meld(Segment s) {
         Segment left = tree.lower(s);
         if (left != null) {
-            if (left.to + 1 <= s.fr) {
+            if (left.to + 1 < s.fr) {
                 // ok.
             } else {
                 // merge
@@ -28,7 +28,7 @@ class MeldableSegment {
         while (true) {
             Segment right = tree.higher(s);
             if (right != null) {
-                if (s.to + 1 <= right.fr) {
+                if (s.to + 1 < right.fr) {
                     break;
                 } else {
                     // merge.
@@ -45,12 +45,17 @@ class MeldableSegment {
         tree.add(s);
     }
 
+    public int size() {
+        return tree.size();
+    }
+
     static class Segment implements Comparable<Segment> {
         static int __seq = 0;
         int seq;
         int fr;
         int to;
         public Segment(int a, int b) {
+            __seq++;
             fr = Math.min(a, b);
             to = Math.max(a, b);
         }
