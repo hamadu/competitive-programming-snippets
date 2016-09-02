@@ -8,18 +8,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MeldableSegmentTest {
-    public static int[] solveNaive(int[] a, int k) {
-        int l = a.length-k+1;
-        int[] ret = new int[l];
-        Arrays.fill(ret, Integer.MAX_VALUE);
-        for (int i = 0; i < l ; i++) {
-            for (int j = i ; j < i+k ; j++) {
-                ret[i] = Math.min(ret[i], a[j]);
-            }
-        }
-        return ret;
-    }
-
     @Test
     public void testTrivial() {
         MeldableSegment segment = new MeldableSegment();
