@@ -5,9 +5,6 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-/**
- * Created by hama_du on 2016/08/29.
- */
 public class ErrorFunctionTest {
     @Test
     public void abcAbcAbAbcAbc() {
