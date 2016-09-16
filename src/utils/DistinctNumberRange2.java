@@ -2,9 +2,6 @@ package utils;
 
 import java.util.*;
 
-/**
- * Created by hama_du on 2016/08/06.
- */
 public class DistinctNumberRange2 {
     /**
      * Computes distinct numbers of give array.

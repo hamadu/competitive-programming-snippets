@@ -4,9 +4,6 @@ import data_structure.fenwick.FenwickTree;
 
 import java.util.Arrays;
 
-/**
- * Created by hama_du on 2016/08/06.
- */
 public class DistinctNumberRange1 {
     /**
      * Computes distinct numbers of give array.
