@@ -7,6 +7,36 @@ import java.util.Arrays;
  */
 public class Prime {
     /**
+     * Computes Euler's totient function value of num : φ(num)
+     *
+     * O(sqrt(n))
+     *
+     * @param num
+     * @return
+     */
+    static long totient(long num) {
+        int[] primes = generatePrimes((int)Math.sqrt(num)+10);
+
+        long ans = 1;
+        for (long p : primes) {
+            if (num < p) {
+                break;
+            }
+            long pn = 1;
+            while (num % p == 0) {
+                pn *= p;
+                num /= p;
+            }
+            ans *= (pn / p) * (p - 1);
+        }
+        if (num >= 2) {
+            ans *= num - 1;
+        }
+        return ans;
+    }
+
+
+    /**
      * Generates primes less than upto.
      *
      * O(nlog(logn))
