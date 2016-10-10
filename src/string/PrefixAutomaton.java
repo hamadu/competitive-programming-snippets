@@ -7,6 +7,9 @@ public class PrefixAutomaton {
     int[] parentId;
     int[] lastCharacter;
     int[] failure;
+    int[] cnt;
+    int[] hereCnt;
+    int[] cmp;
     int ni;
 
     public PrefixAutomaton(char[][] words) {
@@ -18,11 +21,15 @@ public class PrefixAutomaton {
         next = new int[n+1][26];
         parentId = new int[n+1];
         lastCharacter = new int[n+1];
+        cnt = new int[n+1];
+        hereCnt = new int[n+1];
+        cmp = new int[n+1];
         ni = 1;
         for (char[] w : words) {
             add(w);
         }
         buildFailureLink();
+        goup();
     }
 
     public int go(char[] l) {
@@ -64,6 +71,31 @@ public class PrefixAutomaton {
                 } else {
                     que[qh++] = next[now][j];
                 }
+            }
+        }
+    }
+
+    private void goup() {
+        for (int i = ni-1 ; i >= 1 ; i--) {
+            cnt[parentId[i]] += cnt[i];
+        }
+    }
+
+    public void compress() {
+        for (int i = 1 ; i < ni ; i++) {
+            int has = 0;
+            int onlyID = -1;
+            for (int k = 0 ; k < 26 ; k++) {
+                if (next[i][k] != 0) {
+                    onlyID = next[i][k];
+                    has++;
+                }
+            }
+            if (has == 1 && hereCnt[i] == 0) {
+                int my = lastCharacter[i];
+                next[parentId[i]][my] = onlyID;
+                parentId[onlyID] = parentId[i];
+                lastCharacter[onlyID] = my;
             }
         }
     }
