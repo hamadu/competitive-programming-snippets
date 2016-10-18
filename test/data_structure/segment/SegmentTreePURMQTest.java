@@ -53,39 +53,22 @@ public class SegmentTreePURMQTest {
     }
 
     @Test
-    public void findLessOrEqualIndexRight() {
+    public void findIndexLessThanVTest() {
         int[] a = new int[]{8,4,11,2,5,1,3,12,1,5,7,5,8,13,14,3,9,6,2,10,15};
         SegmentTreePURMQ range = new SegmentTreePURMQ(a);
 
         for (int i = 0 ; i < a.length ; i++) {
-            for (int v = 0 ; v <= 16; v++) {
-                int naive = -1;
-                for (int k = i ; k < a.length ; k++) {
-                    if (a[k] <= v) {
-                        naive = k;
-                        break;
+            for (int j = i+1 ; j <= a.length ; j++) {
+                for (int v = 0; v <= 16; v++) {
+                    int naive = -1;
+                    for (int k = i; k < j ; k++) {
+                        if (a[k] <= v) {
+                            naive = k;
+                            break;
+                        }
                     }
+                    assertThat(range.findIndexLessThanV(i, j, v), is(naive));
                 }
-                assertThat(range.findLessOrEqualIndexRight(i, v), is(naive));
-            }
-        }
-    }
-
-    @Test
-    public void findLessOrEqualIndexLeft() {
-        int[] a = new int[]{8,4,11,2,5,1,3,12,1,5,7,5,8,13,14,3,9,6,2,10,15};
-        SegmentTreePURMQ range = new SegmentTreePURMQ(a);
-
-        for (int i = 3 ; i < a.length ; i++) {
-            for (int v = 0 ; v <= 16; v++) {
-                int naive = -1;
-                for (int k = i ; k >= 0 ; k--) {
-                    if (a[k] <= v) {
-                        naive = k;
-                        break;
-                    }
-                }
-                assertThat(range.findLessOrEqualIndexLeft(i, v), is(naive));
             }
         }
     }

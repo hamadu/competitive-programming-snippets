@@ -25,7 +25,7 @@ public class SegmentTreePURMQ {
     }
 
     /**
-     * Uodates value at position idx.
+     * Uodates value at position minIndexSum.
      *
      * @param idx
      * @param value
@@ -72,65 +72,44 @@ public class SegmentTreePURMQ {
         return ret;
     }
 
-    /**
-     * Finds minimum position k s.t. k >= l and min(k,k+1) <= v
-     * If there is no such k, returns -1.
-     *
-     * O(logn)
-     *
-     * @param l
-     * @param v
-     * @return
-     */
-    public int findLessOrEqualIndexRight(int l, int v) {
-        int cur = M + l;
-        while (true) {
-            if (seg[cur] <= v) {
-                if (cur < M) {
-                    cur = cur*2+1;
-                } else {
-                    return cur - M;
-                }
-            } else {
-                cur += 1;
-                if ((cur & (cur+1)) == 0) {
-                    return -1;
-                }
-                if ((cur&1) == 1) {
-                    cur >>>= 1;
-                }
-            }
+    public int findIndexLessThanV(int l, int r, int v) {
+        int ret = findIndexLessThanV(l, r, 0, 0, M+1, v);
+        if (ret == Integer.MAX_VALUE) {
+            return -1;
         }
+        return ret;
     }
 
-    /**
-     * Finds maximum position k s.t. k <= l and min(k,k+1) <= v
-     * If there is no such k, returns -1.
-     *
-     * O(logn)
-     *
-     * @param l
-     * @param v
-     * @return
-     */
-    public int findLessOrEqualIndexLeft(int l, int v) {
-        int cur = M + l;
-        while (true) {
-            if (seg[cur] <= v) {
-                if (cur < M) {
-                    cur = cur*2+2;
-                } else {
-                    return cur - M;
-                }
-            } else {
-                if ((cur & (cur+1)) == 0) {
-                    return -1;
-                }
-                cur--;
-                if ((cur&1)==0) {
-                    cur = (cur-1)>>>1;
-                }
+    private int findIndexLessThanV(int l, int r, int idx, int fr, int to, int v) {
+        // 区間外
+        if (to <= l || r <= fr) {
+            return Integer.MAX_VALUE;
+        }
+
+        // vよりでかい
+        if (seg[idx] > v) {
+            return Integer.MAX_VALUE;
+        }
+
+        // ここ以下、必ず答えが存在
+
+        int med = (fr+to) / 2;
+        if (l <= fr && to <= r) {
+            int len = to-fr;
+            if (len == 1) {
+                // 最下段
+                return idx-M;
             }
+        }
+
+        int left = findIndexLessThanV(l, r, idx*2+1, fr, med, v);
+
+        if (left < Integer.MAX_VALUE) {
+            // 左の答えがINFでないなら左を優先して返す
+            return left;
+        } else {
+            // 左に無いなら、右に必ず答えがある
+            return findIndexLessThanV(l, r, idx*2+2, med, to, v);
         }
     }
 }
