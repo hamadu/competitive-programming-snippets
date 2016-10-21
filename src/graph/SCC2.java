@@ -1,12 +1,12 @@
 package graph;
 
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * Decompose graphs into component-bridge based tree.
  */
 public class SCC2 {
-    static int[] decompose(int[][] graph) {
+    public static int[] decompose(int[][] graph) {
         int n = graph.length;
         boolean[] visited = new boolean[n];
         int[] ord = new int[n];
@@ -72,5 +72,49 @@ public class SCC2 {
             }
         }
         return clus;
+    }
+
+    public static int[][] grouping(int[][] graph, int[] groups) {
+        int n = graph.length;
+        int gn = 0;
+
+        for (int g : groups) {
+            gn = Math.max(gn, g);
+        }
+
+        Set<Long> done = new HashSet<>();
+        List<Integer> edges = new ArrayList<>();
+        int[] deg = new int[gn+1];
+        for (int i = 0 ; i < n ; i++) {
+            for (int j : graph[i]) {
+                if (groups[i] != groups[j] && i < j) {
+                    int gfr = Math.min(groups[i], groups[j]);
+                    int gto = Math.max(groups[i], groups[j]);
+                    long eid = (((long) gfr)<<30)+gto;
+                    if (done.contains(eid)) {
+                        continue;
+                    }
+                    done.add(eid);
+
+                    edges.add(gfr);
+                    edges.add(gto);
+                    deg[gfr]++;
+                    deg[gto]++;
+                }
+            }
+        }
+
+        int[][] groupedGraph = new int[gn+1][];
+        for (int i = 0 ; i <= gn ; i++) {
+            groupedGraph[i] = new int[deg[i]];
+        }
+        int en = edges.size();
+        for (int i = 0 ; i < en ; i += 2) {
+            int u = edges.get(i);
+            int v = edges.get(i+1);
+            groupedGraph[u][--deg[u]] = v;
+            groupedGraph[v][--deg[v]] = u;
+        }
+        return groupedGraph;
     }
 }
