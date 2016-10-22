@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 public class StirlingNumberTest {
     @Test
     public void first() {
-        long[][] f = StirlingNumber.first(8, 100000);
+        long[][] f = StirlingNumber.stirlingFirst(8, 100000);
 
         for (int i = 0; i <= 8; i++) {
             assertThat(f[i][i], is(1L));
@@ -20,7 +20,7 @@ public class StirlingNumberTest {
 
     @Test
     public void second() {
-        long[][] s = StirlingNumber.second(8, 100000);
+        long[][] s = StirlingNumber.stirlingSecond(8, 100000);
 
         for (int i = 0; i <= 8; i++) {
             assertThat(s[i][i], is(1L));
