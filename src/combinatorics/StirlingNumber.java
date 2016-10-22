@@ -2,7 +2,7 @@ package combinatorics;
 
 import java.util.Arrays;
 
-public class Stirling {
+public class StirlingNumber {
     /**
      * Computes Stirling number of 1st kind up to n.
      * first[n][k] means number of ways to split n labeled items into k alternating-sequences.

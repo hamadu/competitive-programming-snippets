@@ -5,10 +5,10 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class StirlingTest {
+public class StirlingNumberTest {
     @Test
     public void first() {
-        long[][] f = Stirling.first(8, 100000);
+        long[][] f = StirlingNumber.first(8, 100000);
 
         for (int i = 0; i <= 8; i++) {
             assertThat(f[i][i], is(1L));
@@ -20,7 +20,7 @@ public class StirlingTest {
 
     @Test
     public void second() {
-        long[][] s = Stirling.second(8, 100000);
+        long[][] s = StirlingNumber.second(8, 100000);
 
         for (int i = 0; i <= 8; i++) {
             assertThat(s[i][i], is(1L));
