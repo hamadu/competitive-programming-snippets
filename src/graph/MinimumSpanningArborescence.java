@@ -11,12 +11,15 @@ public class MinimumSpanningArborescence {
     int n;
     int[][] graph;
 
-    MinimumSpanningArborescence(int[][] g) {
-        n = g.length;
-        graph = g;
+    /**
+     * @param adjacencyMatrix the graph represented
+     */
+    public MinimumSpanningArborescence(int[][] adjacencyMatrix) {
+        n = adjacencyMatrix.length;
+        graph = adjacencyMatrix;
     }
 
-    int doit(int root) {
+    public int doit(int root) {
         int cost = 0;
         int[] c = doit(graph, root);
         int err = 0;
@@ -30,7 +33,7 @@ public class MinimumSpanningArborescence {
         return err >= 2 ? -1 : cost;
     }
 
-    int[] doit(int[][] graph, int root) {
+    private int[] doit(int[][] graph, int root) {
         int n = graph.length;
         int[] msa = new int[n];
         Arrays.fill(msa, -1);
@@ -99,7 +102,7 @@ public class MinimumSpanningArborescence {
                             quog[map[i]][map[j]] = graph[i][j];
                         }
                     }
-                }else {
+                } else {
                     for (int j = 0; j < n; j++) {
                         if (map[j] != quo) {
                             int nc = graph[i][j];
@@ -126,7 +129,7 @@ public class MinimumSpanningArborescence {
         return msa;
     }
 
-    int[] detectCycle(int[] f) {
+    private int[] detectCycle(int[] f) {
         int n = f.length;
         BitSet visited = new BitSet(n);
         outer:
