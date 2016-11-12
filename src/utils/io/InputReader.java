@@ -6,11 +6,6 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
-/**
- * Reads number(s) or string(s) from given stream pretty fast
- *
- * @author hama_du
- */
 public class InputReader {
     private static final int BUFFER_LENGTH = 1<<10;
 

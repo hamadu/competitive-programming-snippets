@@ -1,5 +1,6 @@
 package data_structure.fenwick;
 
+
 /**
  * Fenwick tree. (also known as: Binary index tree)
  *

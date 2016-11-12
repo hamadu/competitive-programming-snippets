@@ -1,14 +1,10 @@
-package utils;
+package graph;
 
-import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-/**
- * Topological Sort with lexical smallest order. (Kahn's algorithm)
- */
-public class TopologicalSort {
-    static int[] toposort(List<Integer>[] graph) {
+public class TopologicalSort1 {
+    static int[] toposort(int[][] graph) {
         int n = graph.length;
         int[] in = new int[n];
         for (int i = 0 ; i < n ; i++) {
@@ -43,5 +39,4 @@ public class TopologicalSort {
         }
         return res;
     }
-
 }

@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Strongly connected component decomposition.
  */
-public class SCC {
+public class SCC1 {
     boolean[] visited;
     int[] node_id;
     List<Integer> rev;
@@ -15,7 +15,7 @@ public class SCC {
     int[][] graph;
     int[][] r_graph;
 
-    public SCC(int[][] g) {
+    public SCC1(int[][] g) {
         n = g.length;
         graph = g;
         r_graph = new int[n][];

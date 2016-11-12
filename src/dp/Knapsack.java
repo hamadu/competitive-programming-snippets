@@ -1,10 +1,6 @@
 package dp;
 
-/**
- * Created by hama_du on 2016/07/31.
- */
 public class Knapsack {
-
     /**
      * Item-answerCountQuery-limited knapsack.
      * O(nW)

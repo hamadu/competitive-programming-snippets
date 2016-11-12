@@ -1,4 +1,4 @@
-package graph;
+package graph.tree;
 
 import java.util.Arrays;
 

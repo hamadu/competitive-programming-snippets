@@ -1,10 +1,8 @@
-package graph;
+package graph.tree;
 
 import org.junit.Test;
 import utils.io.GraphBuilder;
 import utils.rand.XorShift;
-
-import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;

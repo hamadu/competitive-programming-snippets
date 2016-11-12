@@ -2,7 +2,7 @@ package graph.tree;
 
 import org.junit.Test;
 
-import static graph.HeavyLightDecompositionTest.buildLineGraph;
+import static graph.tree.HeavyLightDecompositionTest.buildLineGraph;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 

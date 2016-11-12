@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class Toposort {
-    static int[] toposort(int[][] graph) {
+/**
+ * Topological Sort with lexical smallest order. (Kahn's algorithm)
+ */
+public class TopologicalSort2 {
+    static int[] toposort(List<Integer>[] graph) {
         int n = graph.length;
         int[] in = new int[n];
         for (int i = 0 ; i < n ; i++) {

@@ -2,9 +2,6 @@ package numeric;
 
 import java.util.Arrays;
 
-/**
- * Created by hama_du on 2016/07/31.
- */
 public class Prime {
     /**
      * Computes Euler's totient function value of num : φ(num)

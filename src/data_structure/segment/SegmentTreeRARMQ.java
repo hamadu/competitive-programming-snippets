@@ -3,9 +3,7 @@ package data_structure.segment;
 import java.util.Arrays;
 
 /**
- * Segment tree (range add, range minimum query). Also known as "Starry Sky Tree."
- *
- * @see @link{http://qnighy.github.io/informatics-olympiad/joi2009-day4-starry_sky-problem.html}
+ * Segment tree (range add, range minimum query).
  */
 public class SegmentTreeRARMQ {
     int N;

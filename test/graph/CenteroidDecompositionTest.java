@@ -4,7 +4,7 @@ import org.junit.Test;
 import utils.io.GraphBuilder;
 import utils.rand.XorShift;
 
-import static graph.HeavyLightDecompositionTest.buildLineGraph;
+import static graph.tree.HeavyLightDecompositionTest.buildLineGraph;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 

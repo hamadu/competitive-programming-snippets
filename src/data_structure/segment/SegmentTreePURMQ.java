@@ -81,34 +81,26 @@ public class SegmentTreePURMQ {
     }
 
     private int findIndexLessThanV(int l, int r, int idx, int fr, int to, int v) {
-        // 区間外
         if (to <= l || r <= fr) {
             return Integer.MAX_VALUE;
         }
 
-        // vよりでかい
         if (seg[idx] > v) {
             return Integer.MAX_VALUE;
         }
-
-        // ここ以下、必ず答えが存在
 
         int med = (fr+to) / 2;
         if (l <= fr && to <= r) {
             int len = to-fr;
             if (len == 1) {
-                // 最下段
                 return idx-M;
             }
         }
 
         int left = findIndexLessThanV(l, r, idx*2+1, fr, med, v);
-
         if (left < Integer.MAX_VALUE) {
-            // 左の答えがINFでないなら左を優先して返す
             return left;
         } else {
-            // 左に無いなら、右に必ず答えがある
             return findIndexLessThanV(l, r, idx*2+2, med, to, v);
         }
     }
