@@ -33,9 +33,12 @@ public class Dijkstra {
         Arrays.fill(dp, Long.MAX_VALUE / 10);
         Queue<State> q = new PriorityQueue<>();
         q.add(new State(from, 0));
-        dp[0] = 0;
+        dp[from] = 0;
         while (q.size() >= 1) {
             State st = q.poll();
+            if (dp[st.now] < st.time) {
+                continue;
+            }
             for (int[] e : graph[st.now]) {
                 long time = st.time + e[1];
                 if (dp[e[0]] > time) {
