@@ -4,14 +4,15 @@ package utils;
  * Convex hull technique.
  * Given many lines(say y = a_{i} * x + b_{i}), computes many query:
  *   what is the maximum y of current lines with given x?
+ * Make sure that a_{i} is non-increasing.
  *
  * O(n+qlogn) where q = (number of queries), n = (maximum number of lines).
  */
-public class ConvexHullTech {
+public class ConvexHullTechMin {
     long[][] stk;
     int tail = 0;
 
-    public ConvexHullTech(int maxLines) {
+    public ConvexHullTechMin(int maxLines) {
         stk = new long[maxLines][2];
     }
 
@@ -39,25 +40,6 @@ public class ConvexHullTech {
 
     long val(int lidx, long x) {
         return stk[lidx][0] * x + stk[lidx][1];
-    }
-
-    public long[] queryMax(long x) {
-        int min = -1;
-        int max = tail - 1;
-        while (max - min > 1) {
-            int med = (max + min) / 2;
-            if (val(med, x) <= val(med+1, x)) {
-                min = med;
-            } else {
-                max = med;
-            }
-        }
-        return stk[max];
-    }
-
-    public long computesMax(long x) {
-        long[] line = queryMax(x);
-        return line[0] * x + line[1];
     }
 
     public long[] queryMin(long x) {
