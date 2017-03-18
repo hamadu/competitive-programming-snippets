@@ -1,7 +1,6 @@
 package graph;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * Solve 2-sat using SCC.
@@ -9,54 +8,81 @@ import java.util.List;
 public class SAT2 {
     boolean[] visited;
     int[] nodeId;
-    List<Integer> rev;
+    int[] rev;
+    int rvn;
 
     int n;
     int vn;
-    List<Integer>[] graph;
-    List<Integer>[] revGraph;
+    DirectedGraph graph;
+    DirectedGraph revGraph;
 
     public SAT2(int maxN) {
         n = maxN;
         vn = n * 2;
-        graph = new List[vn];
-        revGraph = new List[vn];
-        for (int i = 0; i < vn; i++) {
-            graph[i] = new ArrayList<>();
-            revGraph[i] = new ArrayList<>();
-        }
+        graph = new DirectedGraph(vn, 2000000);
+        revGraph = new DirectedGraph(vn, 2000000);
+        nodeId = new int[vn];
+        visited = new boolean[vn];
+        rev = new int[vn];
+    }
+
+    public void clear() {
+        Arrays.fill(nodeId, 0);
+        Arrays.fill(visited, false);
+        graph.clear();
+        revGraph.clear();
+        rvn = 0;
     }
 
     public int not(int v) {
         return v >= n ? v - n : v + n;
     }
 
-    public void add(int a, int b) {
-        // a or b => [(not a) then b] and [(not b) then a]
-        graph[not(a)].add(b);
-        graph[not(b)].add(a);
-        revGraph[b].add(not(a));
-        revGraph[a].add(not(b));
+    public void xor(int a, int b) {
+        // a xor b => [a or b] and [(not a) or (not b)]
+        or(a, b);
+        or(not(a), not(b));
     }
 
-    public boolean[] doit() {
-        visited = new boolean[vn];
-        rev = new ArrayList<>();
-        for (int i = 0; i< vn ; i++) {
+    public void or(int a, int b) {
+        // a or b => [(not a) then b] and [(not b) then a]
+        then(not(a), b);
+        then(not(b), a);
+    }
+
+    public void then(int a, int b) {
+        graph.add(a, b);
+        revGraph.add(b, a);
+    }
+
+    public void doit() {
+        for (int i = 0; i < vn ; i++) {
             if (!visited[i]) {
                 dfs(i);
             }
         }
+        Arrays.fill(visited, false);
         int id = 0;
-        nodeId = new int[vn];
-        visited = new boolean[vn];
-        for (int i = rev.size()-1; i>=0; i--) {
-            if (!visited[rev.get(i)]) {
-                rdfs(rev.get(i), id);
+        for (int i = rvn-1 ; i >= 0; i--) {
+            if (!visited[rev[i]]) {
+                rdfs(rev[i], id);
                 id++;
             }
         }
+    }
 
+    private boolean hasValidAssign() {
+        doit();
+        for (int i = 0; i < n ; i++) {
+            if (nodeId[i] == nodeId[i+n]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean[] findValidAssign() {
+        doit();
         boolean[] ret = new boolean[n];
         for (int i = 0; i < n ; i++) {
             if (nodeId[i] == nodeId[i+n]) {
@@ -69,21 +95,22 @@ public class SAT2 {
 
     private void dfs(int i) {
         visited[i] = true;
-        for (int next : graph[i]) {
+        for (int next : graph.nexts(i)) {
             if (!visited[next]) {
                 dfs(next);
             }
         }
-        rev.add(i);
+        rev[rvn++] = i;
     }
 
     private void rdfs(int i, int id) {
         visited[i] = true;
         nodeId[i] = id;
-        for (int next : revGraph[i]) {
+        for (int next : revGraph.nexts(i)) {
             if (!visited[next]) {
                 rdfs(next, id);
             }
         }
     }
 }
+
