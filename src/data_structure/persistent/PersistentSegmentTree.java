@@ -1,7 +1,5 @@
 package data_structure.persistent;
 
-import java.util.Arrays;
-
 /**
  * Persistent segment tree (point add, range sum query)
  */
@@ -20,7 +18,7 @@ public class PersistentSegmentTree {
         M = (N >> 1);
 
         int level = level(N);
-        int qdata = Q * level;
+        int qdata = Q * (level+1);
 
         seg = new int[N+qdata];
         left = new int[N+qdata];

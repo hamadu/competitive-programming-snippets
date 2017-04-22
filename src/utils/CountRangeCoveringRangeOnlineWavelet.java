@@ -16,7 +16,7 @@ public class CountRangeCoveringRangeOnlineWavelet {
      *
      * @cost O(nlogn) where n = ranges.length
      *
-     * @WARNING Destroys the given target ranges array.
+     * @warning Destroys the given target ranges array.
      *
      * @param ranges target ranges
      */
@@ -74,7 +74,7 @@ public class CountRangeCoveringRangeOnlineWavelet {
     /**
      * Counts how many ranges in [l,r).
      *
-     * @COST O(logn) where n = ranges.length
+     * @cost O(logn) where n = ranges.length
      *
      * @param l start of the query range(inclusive)
      * @param r end of the query range(exclusive)
