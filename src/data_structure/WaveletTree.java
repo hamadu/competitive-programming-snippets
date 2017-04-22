@@ -2,8 +2,6 @@ package data_structure;
 
 import utils.BitVector;
 
-import java.util.*;
-
 public class WaveletTree {
     BitVector[] which;
     public int z;
@@ -182,46 +180,5 @@ public class WaveletTree {
         int left = rangeCount(r0, r0+r1, min, max, lv+1, node*2, nodeMin, nodeMed);
         int right = rangeCount(ql-r0, ql-r0+L-r1, min, max, lv+1, node*2+1, nodeMed, nodeMax);
         return left + right;
-    }
-
-    public static void main(String[] args) {
-        int MAX = 1<<17;
-        int N = (1<<17)+40;
-        int Q = 1<<17;
-//        int MAX = 800;
-//        int N = 80;
-//        int Q = 1<<16;
-        int[] values = new int[N];
-        for (int i = 0; i < N ; i++) {
-            values[i] = (int)(Math.random()*MAX);
-        }
-        int[][] queries = new int[Q][4];
-        for (int i = 0; i < Q ; i++) {
-            int A = (int)(Math.random()*N);
-            int B = (int)(Math.random()*N);
-            int VA = (int)(Math.random()*MAX);
-            int VB = (int)(Math.random()*MAX);
-            queries[i][0] = Math.min(A, B);
-            queries[i][1] = Math.max(A, B)+1;
-            queries[i][2] = Math.min(VA, VB);
-            queries[i][3] = Math.max(VA, VB)+1;
-        }
-
-
-        long time = System.currentTimeMillis();
-        WaveletTree tree = new WaveletTree(values);
-        debug("init", (System.currentTimeMillis() - time));
-
-        int sum = 0;
-        for (int i = 0; i < Q ; i++) {
-            int actual = tree.rangeCount(queries[i][0], queries[i][1], queries[i][2], queries[i][3]);
-            sum += actual;
-        }
-        debug("query", System.currentTimeMillis() - time);
-    }
-
-
-    public static void debug(Object... o) {
-        System.out.println(Arrays.deepToString(o));
     }
 }

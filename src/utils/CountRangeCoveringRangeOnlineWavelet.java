@@ -1,7 +1,6 @@
 package utils;
 
 import data_structure.WaveletTree;
-import data_structure.fenwick.FenwickTree;
 
 import java.util.Arrays;
 import java.util.TreeMap;
