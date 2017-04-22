@@ -161,6 +161,7 @@ public class WaveletTree {
         }
         return node - z * 2;
     }
+
     public int rangeCount(int ql, int qr, int min, int max) {
         return rangeCount(ql, qr, min, max, 0, 1, 0, z*2);
     }
