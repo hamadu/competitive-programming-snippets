@@ -105,4 +105,45 @@ public class MaxFlowDinic {
             }
         }
     }
+
+    /**
+     * Returns vertex cover of bipartite-matching.
+     * Call this after executing maxFlow.
+     *
+     * @param s number of vertices except source and sink
+     * @param left number of vertices placed on left
+     * @param right number of vertices placed on right
+     * @return
+     */
+    public int[] getVertexCover(int s, int left, int right) {
+        boolean[] canVisit = new boolean[graph.length];
+        int[] que = new int[graph.length+10];
+        int qh = 0;
+        int qt = 0;
+        que[qh++] = s;
+        canVisit[s] = true;
+        while (qt < qh) {
+            int now = que[qt++];
+            for (int[] e : graph[now]) {
+                if (e[1] >= 1 && !canVisit[e[0]]) {
+                    canVisit[e[0]] = true;
+                    que[qh++] = e[0];
+                }
+            }
+        }
+
+        int[] response = new int[graph.length];
+        int ri = 0;
+        for (int i = 0 ; i < left ; i++) {
+            if (!canVisit[i]) {
+                response[ri++] = i;
+            }
+        }
+        for (int i = left ; i < left+right ; i++) {
+            if (canVisit[i]) {
+                response[ri++] = i;
+            }
+        }
+        return Arrays.copyOf(response, ri);
+    }
 }
