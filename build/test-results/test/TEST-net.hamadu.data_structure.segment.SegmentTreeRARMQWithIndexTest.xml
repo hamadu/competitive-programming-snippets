@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="net.hamadu.data_structure.segment.SegmentTreeRARMQWithIndexTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2017-12-25T21:34:22" hostname="asahikawa.local" time="0.003">
+  <properties/>
+  <testcase name="get" classname="net.hamadu.data_structure.segment.SegmentTreeRARMQWithIndexTest" time="0.001"/>
+  <testcase name="rangeAdd" classname="net.hamadu.data_structure.segment.SegmentTreeRARMQWithIndexTest" time="0.0"/>
+  <testcase name="rangeMin" classname="net.hamadu.data_structure.segment.SegmentTreeRARMQWithIndexTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

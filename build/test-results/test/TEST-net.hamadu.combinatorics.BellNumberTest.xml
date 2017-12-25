@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="net.hamadu.combinatorics.BellNumberTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-12-25T21:34:18" hostname="asahikawa.local" time="0.005">
+  <properties/>
+  <testcase name="bell" classname="net.hamadu.combinatorics.BellNumberTest" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

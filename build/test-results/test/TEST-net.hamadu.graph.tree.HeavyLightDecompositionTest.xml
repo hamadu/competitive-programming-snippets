@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="net.hamadu.graph.tree.HeavyLightDecompositionTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2017-12-25T21:34:23" hostname="asahikawa.local" time="0.099">
+  <properties/>
+  <testcase name="lineGraph1" classname="net.hamadu.graph.tree.HeavyLightDecompositionTest" time="0.001"/>
+  <testcase name="lineGraph2" classname="net.hamadu.graph.tree.HeavyLightDecompositionTest" time="0.0"/>
+  <testcase name="graph" classname="net.hamadu.graph.tree.HeavyLightDecompositionTest" time="0.0"/>
+  <testcase name="largeGraph" classname="net.hamadu.graph.tree.HeavyLightDecompositionTest" time="0.096"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="net.hamadu.data_structure.heap.SkewHeapIntTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2017-12-25T21:34:20" hostname="asahikawa.local" time="1.186">
+  <properties/>
+  <testcase name="pushAndPopValue" classname="net.hamadu.data_structure.heap.SkewHeapIntTest" time="0.002"/>
+  <testcase name="meld" classname="net.hamadu.data_structure.heap.SkewHeapIntTest" time="0.001"/>
+  <testcase name="clear" classname="net.hamadu.data_structure.heap.SkewHeapIntTest" time="0.0"/>
+  <testcase name="pushPopManyValues" classname="net.hamadu.data_structure.heap.SkewHeapIntTest" time="1.181"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="net.hamadu.data_structure.segment.SegmentTreePURMQTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2017-12-25T21:34:22" hostname="asahikawa.local" time="0.005">
+  <properties/>
+  <testcase name="update" classname="net.hamadu.data_structure.segment.SegmentTreePURMQTest" time="0.001"/>
+  <testcase name="findIndexLessThanVTest" classname="net.hamadu.data_structure.segment.SegmentTreePURMQTest" time="0.002"/>
+  <testcase name="get" classname="net.hamadu.data_structure.segment.SegmentTreePURMQTest" time="0.0"/>
+  <testcase name="rangeMin" classname="net.hamadu.data_structure.segment.SegmentTreePURMQTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

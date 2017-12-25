@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="net.hamadu.data_structure.WaveletTreeTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2017-12-25T21:34:18" hostname="asahikawa.local" time="1.658">
+  <properties/>
+  <testcase name="rangeCount" classname="net.hamadu.data_structure.WaveletTreeTest" time="0.01"/>
+  <testcase name="largeRangeCount" classname="net.hamadu.data_structure.WaveletTreeTest" time="0.512"/>
+  <testcase name="largeRangeKth" classname="net.hamadu.data_structure.WaveletTreeTest" time="1.085"/>
+  <testcase name="rank" classname="net.hamadu.data_structure.WaveletTreeTest" time="0.002"/>
+  <testcase name="rangeKth" classname="net.hamadu.data_structure.WaveletTreeTest" time="0.0"/>
+  <testcase name="largeRank" classname="net.hamadu.data_structure.WaveletTreeTest" time="0.04"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

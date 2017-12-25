@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="net.hamadu.data_structure.heap.TreapIntTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2017-12-25T21:34:22" hostname="asahikawa.local" time="0.492">
+  <properties/>
+  <testcase name="putFindRemoveManyValues" classname="net.hamadu.data_structure.heap.TreapIntTest" time="0.491"/>
+  <testcase name="eraseValues" classname="net.hamadu.data_structure.heap.TreapIntTest" time="0.0"/>
+  <testcase name="createEmpty" classname="net.hamadu.data_structure.heap.TreapIntTest" time="0.0"/>
+  <testcase name="getNode" classname="net.hamadu.data_structure.heap.TreapIntTest" time="0.0"/>
+  <testcase name="pushValues" classname="net.hamadu.data_structure.heap.TreapIntTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
