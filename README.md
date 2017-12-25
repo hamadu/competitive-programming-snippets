@@ -2,6 +2,8 @@
 
 [![CircleCI](https://circleci.com/gh/hamadu/competitive-programming-snippets.svg?style=svg)](https://circleci.com/gh/hamadu/competitive-programming-snippets)
 
+[![Coverage Status](https://coveralls.io/repos/github/hamadu/competitive-programming-snippets/badge.svg?branch=master)](https://coveralls.io/github/hamadu/competitive-programming-snippets?branch=master)
+
 ### Contents
 
 * Combinatorics
