@@ -1,10 +1,30 @@
 apply plugin: 'java'
 apply plugin: 'jacoco'
+apply plugin: 'com.github.kt3k.coveralls'
 
 repositories {
     mavenCentral()
 }
 
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.2"
+    }
+}
+
+
 dependencies {
     testCompile 'junit:junit:4.11'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
 }

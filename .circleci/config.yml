@@ -40,3 +40,5 @@ jobs:
 
       # run tests!
       - run: gradle test
+      # computes coverage and send to coveralls
+      - run: gradle jacocoTestReport coveralls
