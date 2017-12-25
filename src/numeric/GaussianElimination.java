@@ -37,4 +37,49 @@ public class GaussianElimination {
         }
         return rank;
     }
+
+    public static double[] byRealEquations(double[][] table) {
+        int n = table.length;
+        int m = table[0].length;
+        if (m != n+1) {
+            throw new RuntimeException("wrong table size");
+        }
+
+        for (int c = 0; c < n ; c++) {
+            int pivot = c;
+            for (int i = c ; i < n ; i++) {
+                if (Math.abs(table[pivot][c]) < Math.abs(table[i][c])) {
+                    pivot = i;
+                }
+            }
+            for (int j = 0; j < m ; j++) {
+                double tmp = table[c][j];
+                table[c][j] = table[pivot][j];
+                table[pivot][j] = tmp;
+            }
+
+            if (Math.abs(table[c][c]) < 1e-15) {
+                return null;
+            }
+
+            for (int j = c+1 ; j < m  ; j++) {
+                table[c][j] /= table[c][c];
+            }
+            for (int i = 0; i < n ; i++) {
+                if (c != i) {
+                    double bai = table[i][c];
+                    for (int j = c ; j < m ; j++) {
+                        table[i][j] -= bai * table[c][j];
+                    }
+                }
+            }
+        }
+
+        double[] answer = new double[n];
+        for (int i = 0; i < n ; i++) {
+            answer[i] = table[i][n];
+        }
+        return answer;
+    }
+
 }
