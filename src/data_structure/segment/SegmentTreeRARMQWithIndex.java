@@ -65,11 +65,8 @@ public class SegmentTreeRARMQWithIndex {
             return;
         }
         if (l <= fr && to <= r) {
-            segMin[idx][1] += x;
-            if (idx*2+2 < segMin.length) {
-                lazy[idx*2+1] += x;
-                lazy[idx*2+2] += x;
-            }
+            lazy[idx] += x;
+            propagate(idx);
             return;
         }
 

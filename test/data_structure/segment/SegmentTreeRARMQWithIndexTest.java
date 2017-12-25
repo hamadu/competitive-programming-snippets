@@ -68,5 +68,17 @@ public class SegmentTreeRARMQWithIndexTest {
         assertThat(range.min(1, 2), is(new int[]{1,7}));
         assertThat(range.min(4, 6), is(new int[]{5,2}));
         assertThat(range.min(0, 3), is(new int[]{0,3}));
+
+        // 3,-93,-94,6,6,2
+        range.add(1, 3, -100);
+        assertThat(range.min(0, 6), is(new int[]{2,-94}));
+        assertThat(range.min(1, 3), is(new int[]{2,-94}));
+        assertThat(range.min(0, 1), is(new int[]{0,3}));
+
+        // 2,-94,-95,5,5,1
+        range.add(0, 6, -1);
+        assertThat(range.min(0, 6), is(new int[]{2,-95}));
+        assertThat(range.min(1, 2), is(new int[]{1,-94}));
+        assertThat(range.min(3, 5), is(new int[]{3,5}));
     }
 }

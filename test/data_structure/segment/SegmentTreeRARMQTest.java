@@ -53,5 +53,17 @@ public class SegmentTreeRARMQTest {
         assertThat(range.min(1, 2), is(7L));
         assertThat(range.min(4, 6), is(2L));
         assertThat(range.min(0, 3), is(3L));
+
+        // 3,-93,-94,6,6,2
+        range.add(1, 3, -100);
+        assertThat(range.min(0, 6), is(-94L));
+        assertThat(range.min(1, 3), is(-94L));
+        assertThat(range.min(0, 1), is(3L));
+
+        // 2,-94,-95,5,5,1
+        range.add(0, 6, -1);
+        assertThat(range.min(0, 6), is(-95L));
+        assertThat(range.min(1, 2), is(-94L));
+        assertThat(range.min(3, 5), is(5L));
     }
 }
